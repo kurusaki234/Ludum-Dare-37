@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TileScript : MonoBehaviour 
 {
@@ -21,7 +22,9 @@ public class TileScript : MonoBehaviour
 
 	public int rowIndex;
 	public int colIndex;
-	public Material material;
+
+	public MeshRenderer meshRenderer;
+	public List<Material> tileMaterials;
 
 	void Start () 
 	{
