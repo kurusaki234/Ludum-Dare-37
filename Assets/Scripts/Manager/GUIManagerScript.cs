@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GUIManagerScript : MonoBehaviour
@@ -17,6 +19,7 @@ public class GUIManagerScript : MonoBehaviour
 				{
 					GameObject obj = new GameObject("_GUIManager");
 					mInstance = obj.AddComponent<GUIManagerScript>();
+					obj.tag = "GUIManager";
 				}
 				else
 				{
@@ -29,6 +32,15 @@ public class GUIManagerScript : MonoBehaviour
 
 	bool isPaused = false;
 
+	public GameObject gameCanvas;
+	public GameObject pauseCanvas;
+
+	void Awake()
+	{
+		gameCanvas.SetActive(true);
+		pauseCanvas.SetActive(false);
+	}
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -38,34 +50,33 @@ public class GUIManagerScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.GetKey(KeyCode.Escape))
+		if(Input.GetKeyUp(KeyCode.Escape))
 		{
-			if(!isPaused)
-			{
-				Pause();
-			}
-			else
-			{
-				Resume();
-			}
+			Pause();
 		}
+	}
+
+	public void MainMenu()
+	{
+		SceneManager.LoadScene("MainMenuScene");
 	}
 
 	public void Pause()
 	{
-		isPaused = true;
-		Time.timeScale = 0;
-	}
+		isPaused = !isPaused;
 
-	public void Resume()
-	{
-		isPaused = false;
-		Time.timeScale = 1;
-	}
-
-	public void ItemButton()
-	{
-		
+		if(!isPaused)
+		{
+			gameCanvas.SetActive(false);
+			pauseCanvas.SetActive(true);
+			Time.timeScale = 0;
+		}
+		else
+		{
+			gameCanvas.SetActive(true);
+			pauseCanvas.SetActive(false);
+			Time.timeScale = 1;
+		}
 	}
 
 	public void MoveButton()
@@ -73,8 +84,18 @@ public class GUIManagerScript : MonoBehaviour
 
 	}
 
+	public void ItemButton()
+	{
+		
+	}
+
 	public void StatsButton()
 	{
 
+	}
+
+	public void ExitGame()
+	{
+		Application.Quit();
 	}
 }

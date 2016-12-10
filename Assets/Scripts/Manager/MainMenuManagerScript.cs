@@ -19,6 +19,7 @@ public class MainMenuManagerScript : MonoBehaviour
 				{
 					GameObject obj = new GameObject("_MainMenuManager");
 					mInstance = obj.AddComponent<MainMenuManagerScript>();
+					obj.tag = "MainMenuManager";
 				}
 				else
 				{
