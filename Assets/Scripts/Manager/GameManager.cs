@@ -59,10 +59,12 @@ public class GameManager : MonoBehaviour
 	{
 		if(currentPlayerIndex + 1 < players.Count)
 		{
+			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex ++;
 		}
 		else
 		{
+			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex = 0;
 		}
 
@@ -76,6 +78,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		GameManager.Instance.CameraFollow();
+		players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 1;
 	}
 
 	public void PlayerMove()
@@ -92,6 +95,8 @@ public class GameManager : MonoBehaviour
 			tempPlayer.colIndex = 0;
 			tempPlayer.rowIndex = 0;
 			players.Add(tempPlayer);
+			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
+			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
 
 			if(i == 0)
 			{
