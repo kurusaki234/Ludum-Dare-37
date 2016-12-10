@@ -65,6 +65,8 @@ namespace Player
 
 					GameManager.Instance.NextTurn();
 				}
+
+				GameManager.Instance.CameraFollow();
 			}
 		}
 

@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	public GameObject uiCanvas;
+	public Camera mCamera;
+	public Vector3 playerPosition;
+	Vector3 cameraOffset;
 
 	public List<GameObject> playersPrefabs;
 	public List<Player.Movement> players;
@@ -38,12 +41,18 @@ public class GameManager : MonoBehaviour
 	void Start () 
 	{
 		SpawnPlayers();
+		cameraOffset = mCamera.transform.position - playersPrefabs[0].transform.position;
 	}
 
 
 	void Update () 
 	{
-	
+		
+	}
+
+	public void CameraFollow()
+	{
+		mCamera.transform.position = players[currentPlayerIndex].gameObject.transform.position + cameraOffset;
 	}
 
 	public void NextTurn()
@@ -65,6 +74,8 @@ public class GameManager : MonoBehaviour
 		{
 			players[currentPlayerIndex].Move();
 		}
+
+		GameManager.Instance.CameraFollow();
 	}
 
 	public void PlayerMove()
