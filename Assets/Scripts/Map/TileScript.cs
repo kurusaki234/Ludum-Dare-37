@@ -14,6 +14,9 @@ public class TileScript : MonoBehaviour
 		Unfortune_Tile = 5,
 		Building_Tile = 6,
 		Prison_Tile = 7,
+		Shop_Tile = 8,
+		Temple_Tile = 9,
+		Storage_Tile = 10,
 
 		TOTAL
 	};

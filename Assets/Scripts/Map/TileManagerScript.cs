@@ -32,8 +32,8 @@ public class TileManagerScript : MonoBehaviour
 	}
 
 	int[,] mapArray;
-	const int mapX = 24;
-	const int mapY = 16;
+	const int mapX = 32;
+	const int mapY = 24;
 
 	public int rowCount;
 	public int colCount;
@@ -66,6 +66,47 @@ public class TileManagerScript : MonoBehaviour
 				else if (mapArray[i,j] == 2)
 				{
 					tempTileScript.type = TileScript.Type.Unwalkable_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[1];
+				}
+				else if (mapArray[i,j] == 3)
+				{
+					tempTileScript.type = TileScript.Type.Building_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[2];
+				}
+				else if (mapArray[i,j] == 4)
+				{
+					tempTileScript.type = TileScript.Type.Shop_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[3];
+				}
+				else if (mapArray[i,j] == 5)
+				{
+					tempTileScript.type = TileScript.Type.Event_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[4];
+				}
+				else if (mapArray[i,j] == 6)
+				{
+					tempTileScript.type = TileScript.Type.Fortune_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[5];
+				}
+				else if (mapArray[i,j] == 7)
+				{
+					tempTileScript.type = TileScript.Type.Unfortune_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[6];
+				}
+				else if (mapArray[i,j] == 8)
+				{
+					tempTileScript.type = TileScript.Type.Prison_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[7];
+				}
+				else if (mapArray[i,j] == 9)
+				{
+					tempTileScript.type = TileScript.Type.Storage_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[8];
+				}
+				else if (mapArray[i,j] == 10)
+				{
+					tempTileScript.type = TileScript.Type.Temple_Tile;
+					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[9];
 				}
 
 				tempTileScript.rowIndex = i;
@@ -80,22 +121,30 @@ public class TileManagerScript : MonoBehaviour
 	{
 		mapArray = new int[mapY,mapX] 
 		{
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+			{2, 3, 3, 3, 3, 3, 3, 3, 3, 3,  	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,		 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 		2, 2},
+			{3, 5, 5, 7, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 1, 8, 2, 2, 7, 7, 7, 		7, 2},
+			{3, 5, 5, 6, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 1, 1, 3, 2, 7, 2, 2, 		2, 2},
+			{3, 6, 7, 3, 3, 3, 3, 3, 3, 1,  	1, 3, 3, 3, 3, 2, 2, 3, 3, 3,		 3, 3, 1, 1, 4, 4, 2, 7, 2, 2, 		2, 2},
+			{3, 1, 1, 3, 3, 3, 3, 3, 3, 1,  	1, 1, 1, 1, 7, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 4, 4, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 6, 5, 5, 7, 1, 1,		 1, 1, 7, 5, 5, 2, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	3, 1, 3, 3, 3, 6, 7, 3, 3, 3,		 1, 1, 6, 5, 5, 2, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 1, 1, 9, 9, 2,  	3, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 3, 3, 6, 7, 3, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 6, 7, 9, 9, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 10, 10, 1, 1, 3, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 1, 7, 5, 5, 6, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 10, 10, 7, 6, 3, 2, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 1, 6, 5, 5, 7, 1, 1,  	1, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 2, 5, 5, 7, 7, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	1, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 2, 5, 5, 7, 7, 7, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 2, 3, 3, 1, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 7, 5, 5, 6, 7, 3, 2, 2, 2, 2, 		0, 0},
+			{3, 1, 1, 3, 3, 3, 3, 1, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 6, 5, 5, 1, 1, 3, 2, 2, 2, 2, 		0, 0},
+			{3, 1, 1, 1, 1, 1, 7, 5, 5, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{4, 4, 1, 1, 1, 1, 6, 5, 5, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 9, 9, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{4, 4, 7, 6, 3, 3, 3, 6, 7, 3,  	3, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 9, 9, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{3, 1, 5, 5, 2, 3, 3, 1, 1, 1,  	1, 1, 3, 3, 3, 3, 3, 3, 3, 3,		 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{3, 1, 5, 5, 2, 3, 3, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{3, 1, 6, 7, 3, 3, 3, 3, 3, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 0, 0, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{3, 1, 1, 3, 3, 3, 3, 3, 3, 1,  	1, 3, 3, 3, 3, 6, 7, 3, 3, 3,		 0, 0, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{3, 1, 1, 1, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 6, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{2, 8, 1, 1, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 7, 5, 5, 7, 1, 1,		 1, 1, 1, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
+			{2, 2, 3, 3, 3, 3, 3, 3, 3, 3,  	3, 3, 3, 3, 3, 2, 2, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 		0, 0},
 		};
 
 		rowCount = mapArray.GetLength(0);

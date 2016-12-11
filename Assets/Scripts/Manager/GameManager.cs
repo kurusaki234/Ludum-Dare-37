@@ -92,8 +92,8 @@ public class GameManager : MonoBehaviour
 		for(int i = 0; i < playersPrefabs.Count; i++)
 		{
 			Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[i], new Vector3(-12.0f, 0.5f, 8.0f), Quaternion.identity)).GetComponent<Player.Movement>();
-			tempPlayer.colIndex = 0;
-			tempPlayer.rowIndex = 0;
+			tempPlayer.colIndex = 1;
+			tempPlayer.rowIndex = 1;
 			players.Add(tempPlayer);
 			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
 			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
