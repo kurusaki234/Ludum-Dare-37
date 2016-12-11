@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TileScript : MonoBehaviour 
 {
@@ -13,6 +14,9 @@ public class TileScript : MonoBehaviour
 		Unfortune_Tile = 5,
 		Building_Tile = 6,
 		Prison_Tile = 7,
+		Shop_Tile = 8,
+		Temple_Tile = 9,
+		Storage_Tile = 10,
 
 		TOTAL
 	};
@@ -21,7 +25,9 @@ public class TileScript : MonoBehaviour
 
 	public int rowIndex;
 	public int colIndex;
-	public Material material;
+
+	public MeshRenderer meshRenderer;
+	public List<Material> tileMaterials;
 
 	void Start () 
 	{
