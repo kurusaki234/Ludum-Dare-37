@@ -34,11 +34,13 @@ public class GUIManagerScript : MonoBehaviour
 
 	public GameObject gameCanvas;
 	public GameObject pauseCanvas;
+	public GameObject inventoryCanvas;
 
 	void Awake()
 	{
 		gameCanvas.SetActive(true);
 		pauseCanvas.SetActive(false);
+		inventoryCanvas.SetActive(false);
 	}
 
 	// Use this for initialization
@@ -79,6 +81,12 @@ public class GUIManagerScript : MonoBehaviour
 		}
 	}
 
+	public void Back()
+	{
+		gameCanvas.SetActive(true);
+		inventoryCanvas.SetActive(false);
+	}
+
 	public void MoveButton()
 	{
 
@@ -86,7 +94,8 @@ public class GUIManagerScript : MonoBehaviour
 
 	public void ItemButton()
 	{
-		
+		gameCanvas.SetActive(false);
+		inventoryCanvas.SetActive(true);
 	}
 
 	public void StatsButton()
