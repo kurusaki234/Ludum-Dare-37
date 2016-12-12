@@ -65,18 +65,6 @@ namespace Player
 			}
 */
 
-			if(Input.GetKeyDown(KeyCode.A))
-			{
-				if(moveCount != 0)
-				{
-					moveCount = 0;
-				}
-
-				//numberOfMoves = Random.Range(1, 7);
-				numberOfMoves = 6;
-				canMove = true;
-			}
-
 			if(canMove)
 			{
 				if(moveCount < numberOfMoves)
@@ -84,6 +72,7 @@ namespace Player
 					Vector3 oldPos = transform.position;
 					transform.position = Vector3.Lerp(transform.position, (transform.position + transform.forward), Time.deltaTime);
 					distanceTraveled += Vector3.Distance(oldPos, transform.position);
+					GameManager.Instance.CameraFollow();
 
 					if(distanceTraveled >= 1.0f)
 					{
@@ -107,9 +96,21 @@ namespace Player
 					}
 
 					moveCount = 0;
-					canMove = false;					
+					canMove = false;
+					GameManager.Instance.NextTurn();
 				}
 			}
+		}
+
+		public void Move()
+		{
+			if(moveCount != 0)
+			{
+				moveCount = 0;
+			}
+
+			numberOfMoves = Random.Range(1, 7);
+			canMove = true;
 		}
 
 		/*public void Move()
