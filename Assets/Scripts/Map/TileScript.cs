@@ -43,13 +43,15 @@ public class TileScript : MonoBehaviour
 
 	public GameObject[] sadakoBuildings;
 	public GameObject[] kayakoBuildings;
+	public GameObject[] jamiBuildings;
+	public GameObject[] demonFoxBuildings;
 
 	public int currentLevel = 0;
 	public GameObject currentBulding = null;
 
 	public void SadokoBuilding(float angleRotate)
 	{
-		if(currentLevel < 4)
+		if(currentLevel < 3)
 		{
 			if(currentLevel == 0)
 			{
@@ -73,20 +75,12 @@ public class TileScript : MonoBehaviour
 					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
-			else if(currentLevel == 3)
-			{
-				Destroy(currentBulding);
-
-				currentBulding = (GameObject)Instantiate(sadakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
-				currentLevel ++;
-			}
 		}
 	}
 
 	public void KayakoBuilding(float angleRotate)
 	{
-		if(currentLevel < 4)
+		if(currentLevel < 3)
 		{
 			if(currentLevel == 0)
 			{
@@ -110,24 +104,64 @@ public class TileScript : MonoBehaviour
 					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
-			else if(currentLevel == 3)
-			{
-				Destroy(currentBulding);
-
-				currentBulding = (GameObject)Instantiate(kayakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
-				currentLevel ++;
-			}
 		}
 	}
 
 	public void JamiBuilding(float angleRotate)
 	{
-		
+		if(currentLevel < 3)
+		{
+			if(currentLevel == 0)
+			{
+				currentBulding = (GameObject)Instantiate(jamiBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 1)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(jamiBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 2)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(jamiBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+		}
 	}
 
 	public void DemonFoxBuilding(float angleRotate)
 	{
+		if(currentLevel < 3)
+		{
+			if(currentLevel == 0)
+			{
+				currentBulding = (GameObject)Instantiate(demonFoxBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 1)
+			{
+				Destroy(currentBulding);
 
+				currentBulding = (GameObject)Instantiate(demonFoxBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 2)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(demonFoxBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+		}
 	}
 }

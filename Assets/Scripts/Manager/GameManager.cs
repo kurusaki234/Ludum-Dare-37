@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			uiCanvas.SetActive(false);
 			players[currentPlayerIndex].Move();
 		}
 
