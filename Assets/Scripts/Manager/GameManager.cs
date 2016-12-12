@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
 
 	public GameObject uiCanvas;
 	public Camera mCamera;
-	public Vector3 playerPosition;
 	Vector3 cameraOffset;
 
 	public List<GameObject> playersPrefabs;
@@ -74,7 +73,7 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			players[currentPlayerIndex].Move();
+			//players[currentPlayerIndex].Move();
 		}
 
 		GameManager.Instance.CameraFollow();
@@ -83,17 +82,19 @@ public class GameManager : MonoBehaviour
 
 	public void PlayerMove()
 	{
-		players[currentPlayerIndex].Move();
+		//players[currentPlayerIndex].Move();
 		uiCanvas.SetActive(false);
 	}
 
 	void SpawnPlayers()
 	{
+		Vector3 spawnPosition = playersPrefabs[0].transform.position;
+
 		for(int i = 0; i < playersPrefabs.Count; i++)
 		{
-			Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[i], new Vector3(-12.0f, 0.5f, 8.0f), Quaternion.identity)).GetComponent<Player.Movement>();
-			tempPlayer.colIndex = 1;
-			tempPlayer.rowIndex = 1;
+			Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[i], spawnPosition, Quaternion.identity)).GetComponent<Player.Movement>();
+			tempPlayer.colIndex = 5;
+			tempPlayer.rowIndex = 5;
 			players.Add(tempPlayer);
 			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
 			tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
