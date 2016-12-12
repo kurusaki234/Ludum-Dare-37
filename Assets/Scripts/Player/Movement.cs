@@ -84,7 +84,7 @@ namespace Player
 				{
 					RaycastHit hitInfo;
 
-					if (Physics.Raycast (new Vector3 (this.transform.position.x, this.transform.position.y -0.54f, this.transform.position.z)
+					if (Physics.Raycast (new Vector3 (this.transform.position.x, this.transform.position.y + 0.54f, this.transform.position.z)
 						, Vector3.down, out hitInfo, ground))
 					{
 						if(targetTile == null)
