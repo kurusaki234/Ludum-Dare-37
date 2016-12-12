@@ -104,6 +104,13 @@ public class GUIManagerScript : MonoBehaviour
 		inventoryScrollPanel.SetActive(true);
 	}
 
+	public void ShopButton()
+	{
+		gameCanvas.SetActive(false);
+		inventoryCanvas.SetActive(true);
+		shopScrollPanel.SetActive(true);
+	}
+
 	public void StatsButton()
 	{
 
