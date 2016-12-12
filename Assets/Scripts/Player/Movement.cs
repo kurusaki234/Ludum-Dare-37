@@ -14,10 +14,11 @@ namespace Player
 		public int moveGridIndex = 0;
 		public List<Vector3> moveGridList = new List<Vector3>();
 
+		public GameObject[] characters;
+
 		Vector3 currentGridPos;
 		//float moveGridTimer = 0.0f;
 		//public float moveGridDuration;
-
 		public bool bot = true;
 
 		public int moveCount = 0;
@@ -29,12 +30,20 @@ namespace Player
 
 		public LayerMask ground;
 
+		private string character;
+
+		void Awake()
+		{
+			character = PlayerPrefs.GetString ("Name");
+			characters = GameObject.FindGameObjectsWithTag ("Player");
+		}
+
 		void Start()
 		{
 			moveCount = 0;
 			targetTile = null;
 		}
-
+			
 		void Update()
 		{
 			/*if(moveGridIndex < moveGridList.Count)
@@ -64,30 +73,13 @@ namespace Player
 				//GameManager.Instance.CameraFollow();
 			}
 */
-
-			if(canMove)
+			for (int i = 0; i < characters.Length;)
 			{
-				if(moveCount < numberOfMoves)
+				if(canMove)
 				{
-					Vector3 oldPos = transform.position;
-					transform.position = Vector3.Lerp(transform.position, (transform.position + transform.forward), Time.deltaTime);
-					distanceTraveled += Vector3.Distance(oldPos, transform.position);
-					//GameManager.Instance.CameraFollow();
-
-					if(distanceTraveled >= 1.0f)
+					if(moveCount < numberOfMoves)
 					{
-						//Debug.Log("x:" + transform.position.x + "\ty:" + transform.position.y + "\tz:" + transform.position.z);
-						distanceTraveled = 0;
-						moveCount ++;
-					}
-				}
-				else if (moveCount == numberOfMoves)
-				{
-					RaycastHit hitInfo;
-
-					if (Physics.Raycast (new Vector3 (this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z)
-						, Vector3.down, out hitInfo, ground))
-					{
+<<<<<<< HEAD
 						targetTile = hitInfo.transform.gameObject;
 						transform.position = new Vector3(targetTile.transform.position.x, -0.54f, targetTile.transform.position.z);
 						targetTile = null;
@@ -97,13 +89,63 @@ namespace Player
 					canMove = false;
 
 					Checking();
+=======
+						Vector3 oldPos = transform.position;
+						characters[i].transform.position = Vector3.Lerp(transform.position, (characters[i].transform.position + transform.forward), Time.deltaTime);
+						distanceTraveled += Vector3.Distance(oldPos, transform.position);
+						//GameManager.Instance.CameraFollow();
+
+						if(distanceTraveled >= 1.0f)
+						{
+							//Debug.Log("x:" + transform.position.x + "\ty:" + transform.position.y + "\tz:" + transform.position.z);
+							distanceTraveled = 0;
+							moveCount ++;
+						}
+					}
+					else if (moveCount == numberOfMoves)
+					{
+						RaycastHit hitInfo;
+
+						if (Physics.Raycast (new Vector3 (this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z)
+							, Vector3.down, out hitInfo, ground))
+						{
+							targetTile = hitInfo.transform.gameObject;
+							transform.position = new Vector3(targetTile.transform.position.x, -0.531f, targetTile.transform.position.z);
+							targetTile = null;
+						}
+							
+						if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+							TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+							TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true ||
+							TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
+						{
+							Debug.Log("ASDASD");
+							BuyUpgradeTile();
+							i++;
+						}
+						else
+						{
+							//GameManager.Instance.NextTurn();
+							i++;
+						}
+
+						moveCount = 0;
+						canMove = false;
+					}
+>>>>>>> e418fe508fa3b5061514a2b651fec77f7b29060c
 				}
 			}
 		}
 
+<<<<<<< HEAD
 		void Checking()
 		{
 			if(!bot)
+=======
+
+
+			if(Input.GetKeyDown(KeyCode.A))
+>>>>>>> e418fe508fa3b5061514a2b651fec77f7b29060c
 			{
 				if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
 					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
@@ -133,6 +175,11 @@ namespace Player
 					GameManager.Instance.NextTurn();
 				}
 			}
+<<<<<<< HEAD
+=======
+
+			//Debug.Log(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)));
+>>>>>>> e418fe508fa3b5061514a2b651fec77f7b29060c
 		}
 
 		public void Move()

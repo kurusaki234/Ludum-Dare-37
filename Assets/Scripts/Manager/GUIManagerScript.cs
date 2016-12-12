@@ -32,13 +32,18 @@ public class GUIManagerScript : MonoBehaviour
 
 	bool isPaused = false;
 
+<<<<<<< HEAD
 	public GameObject gameCanvas, pauseCanvas, inventoryCanvas, inventoryScrollPanel, shopScrollPanel, buyButton, noBuyButton;
+=======
+	public GameObject gameCanvas, pauseCanvas, inventoryCanvas, storageCanvas, inventoryScrollPanel, shopScrollPanel;
+>>>>>>> e418fe508fa3b5061514a2b651fec77f7b29060c
 
 	void Awake()
 	{
 		gameCanvas.SetActive(true);
 		pauseCanvas.SetActive(false);
 		inventoryCanvas.SetActive(false);
+		storageCanvas.SetActive(false);
 		inventoryScrollPanel.SetActive(false);
 		shopScrollPanel.SetActive(false);
 	}
@@ -85,6 +90,7 @@ public class GUIManagerScript : MonoBehaviour
 	{
 		gameCanvas.SetActive(true);
 		inventoryCanvas.SetActive(false);
+		storageCanvas.SetActive(false);
 		inventoryScrollPanel.SetActive(false);
 		shopScrollPanel.SetActive(false);
 
@@ -109,6 +115,12 @@ public class GUIManagerScript : MonoBehaviour
 		gameCanvas.SetActive(false);
 		inventoryCanvas.SetActive(true);
 		shopScrollPanel.SetActive(true);
+	}
+
+	public void StorageButton()
+	{
+		gameCanvas.SetActive(false);
+		storageCanvas.SetActive(true);
 	}
 
 	public void StatsButton()
