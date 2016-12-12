@@ -72,7 +72,7 @@ namespace Player
 					Vector3 oldPos = transform.position;
 					transform.position = Vector3.Lerp(transform.position, (transform.position + transform.forward), Time.deltaTime);
 					distanceTraveled += Vector3.Distance(oldPos, transform.position);
-					GameManager.Instance.CameraFollow();
+					//GameManager.Instance.CameraFollow();
 
 					if(distanceTraveled >= 1.0f)
 					{
@@ -81,25 +81,42 @@ namespace Player
 						moveCount ++;
 					}
 				}
-				else
+				else if (moveCount == numberOfMoves)
 				{
 					RaycastHit hitInfo;
 
-					if (Physics.Raycast (this.transform.position, Vector3.down, out hitInfo, ground))
+					if (Physics.Raycast (new Vector3 (this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z)
+						, Vector3.down, out hitInfo, ground))
 					{
-						if (targetTile == null)
-						{
-							targetTile = hitInfo.transform.gameObject;
-							transform.position = new Vector3(targetTile.transform.position.x, 0.0f, targetTile.transform.position.z);
-							targetTile = null;
-						}
+						targetTile = hitInfo.transform.gameObject;
+						transform.position = new Vector3(targetTile.transform.position.x, 0.0f, targetTile.transform.position.z);
+						targetTile = null;
+					}
+
+					if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true ||
+						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
+					{
+						Debug.Log("ASDASD");
+						BuyUpgradeTile();
+					}
+					else
+					{
+						//GameManager.Instance.NextTurn();
 					}
 
 					moveCount = 0;
 					canMove = false;
-					GameManager.Instance.NextTurn();
 				}
 			}
+
+			if(Input.GetKeyDown(KeyCode.A))
+			{
+				Move();
+			}
+
+			Debug.Log(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)));
 		}
 
 		public void Move()
@@ -111,6 +128,27 @@ namespace Player
 
 			numberOfMoves = Random.Range(1, 7);
 			canMove = true;
+		}
+
+		public void BuyUpgradeTile()
+		{
+			if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true)
+			{
+				TileScript tempTile = TileManagerScript.Instance.getTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, (int)transform.position.z)).gameObject.GetComponent<TileScript>();
+				tempTile.SadokoBuilding(90.0f);
+			}
+			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true)
+			{
+				
+			}
+			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true)
+			{
+				
+			}
+			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
+			{
+				
+			}
 		}
 
 		/*public void Move()

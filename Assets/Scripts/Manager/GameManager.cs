@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 	void Start () 
 	{
 		SpawnPlayers();
-		cameraOffset = mCamera.transform.position - playersPrefabs[0].transform.position;
+		cameraOffset = mCamera.transform.position - players[0].transform.position;
 	}
 
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
 
 	public void NextTurn()
 	{
-		if(currentPlayerIndex + 1 < players.Count)
+		/*if(currentPlayerIndex + 1 < players.Count)
 		{
 			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex ++;
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 		{
 			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex = 0;
-		}
+		}*/
 
 		if(players[currentPlayerIndex].bot == false)
 		{
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		GameManager.Instance.CameraFollow();
-		players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 1;
+		//players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 1;
 	}
 
 	public void PlayerMove()
@@ -88,12 +88,10 @@ public class GameManager : MonoBehaviour
 
 	void SpawnPlayers()
 	{
-		Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[0], new Vector3(-14f, 0.0f, 10.0f), Quaternion.identity)).GetComponent<Player.Movement>();
+		Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[0], new Vector3(-14f, -0.54f, 10.0f), Quaternion.identity)).GetComponent<Player.Movement>();
 		tempPlayer.colIndex = 2;
 		tempPlayer.rowIndex = 2;
 		players.Add(tempPlayer);
-		tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
-		tempPlayer.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
 		tempPlayer.bot = false;
 		int rand = Random.Range(1, 3);
 		switch(rand)
@@ -107,12 +105,10 @@ public class GameManager : MonoBehaviour
 			break;
 		}
 
-		Player.Movement tempPlayer2 = ((GameObject) Instantiate(playersPrefabs[1], new Vector3(-15f, 0.0f, 10.0f), Quaternion.identity)).GetComponent<Player.Movement>();
+		Player.Movement tempPlayer2 = ((GameObject) Instantiate(playersPrefabs[1], new Vector3(-15f, -0.54f, 10.0f), Quaternion.identity)).GetComponent<Player.Movement>();
 		tempPlayer2.colIndex = 1;
 		tempPlayer2.rowIndex = 2;
 		players.Add(tempPlayer2);
-		tempPlayer2.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
-		tempPlayer2.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
 		tempPlayer2.bot = true;
 		rand = Random.Range(1, 3);
 		switch(rand)
@@ -126,12 +122,10 @@ public class GameManager : MonoBehaviour
 			break;
 		}
 
-		Player.Movement tempPlayer3 = ((GameObject) Instantiate(playersPrefabs[2], new Vector3(-14f, 0.0f, 11.0f), Quaternion.identity)).GetComponent<Player.Movement>();
+		Player.Movement tempPlayer3 = ((GameObject) Instantiate(playersPrefabs[2], new Vector3(-14f, -0.54f, 11.0f), Quaternion.identity)).GetComponent<Player.Movement>();
 		tempPlayer3.colIndex = 2;
 		tempPlayer3.rowIndex = 1;
 		players.Add(tempPlayer3);
-		tempPlayer3.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
-		tempPlayer3.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
 		tempPlayer3.bot = true;
 		rand = Random.Range(1, 3);
 		switch(rand)
@@ -145,12 +139,10 @@ public class GameManager : MonoBehaviour
 			break;
 		}
 
-		Player.Movement tempPlayer4 = ((GameObject) Instantiate(playersPrefabs[3], new Vector3(-15f, 0.0f, 11.0f), Quaternion.identity)).GetComponent<Player.Movement>();
+		Player.Movement tempPlayer4 = ((GameObject) Instantiate(playersPrefabs[3], new Vector3(-15f, -0.54f, 11.0f), Quaternion.identity)).GetComponent<Player.Movement>();
 		tempPlayer4.colIndex = 1;
 		tempPlayer4.rowIndex = 1;
 		players.Add(tempPlayer4);
-		tempPlayer4.gameObject.GetComponent<MeshRenderer>().sortingLayerName = "PlayerLayer";
-		tempPlayer4.gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;;
 		tempPlayer4.bot = true;
 		rand = Random.Range(1, 3);
 		switch(rand)

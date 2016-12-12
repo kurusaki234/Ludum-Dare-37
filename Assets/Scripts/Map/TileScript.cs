@@ -17,7 +17,6 @@ public class TileScript : MonoBehaviour
 		Shop_Tile = 8,
 		Temple_Tile = 9,
 		Storage_Tile = 10,
-		Starting_Tile = 11,
 
 		TOTAL
 	};
@@ -29,4 +28,45 @@ public class TileScript : MonoBehaviour
 
 	public MeshRenderer meshRenderer;
 	public List<Material> tileMaterials;
+
+	public GameObject[] sadakoBuildings;
+	public GameObject[] kayakoBuildings;
+
+	public int currentLevel = 0;
+	public GameObject currentBulding = null;
+
+	public void SadokoBuilding(float angleRotate)
+	{
+		Debug.Log("AAA");
+		if(currentLevel == 0)
+		{
+			 currentBulding = (GameObject)Instantiate(sadakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
+			currentLevel ++;
+		}
+		else if(currentLevel == 1)
+		{
+			Destroy(currentBulding);
+
+			currentBulding = (GameObject)Instantiate(sadakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
+			currentLevel ++;
+		}
+		else if(currentLevel == 2)
+		{
+			Destroy(currentBulding);
+
+			currentBulding = (GameObject)Instantiate(sadakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
+			currentLevel ++;
+		}
+		else if(currentLevel == 3)
+		{
+			Destroy(currentBulding);
+
+			currentBulding = (GameObject)Instantiate(sadakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
+			currentLevel ++;
+		}
+	}
 }
