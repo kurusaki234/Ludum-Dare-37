@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
 		uiCanvas.SetActive(false);
 	}
 
+	public void PlayerBuyTile()
+	{
+		players[currentPlayerIndex].BuyUpgradeTile();
+	}
+
 	void SpawnPlayers()
 	{
 		Player.Movement tempPlayer = ((GameObject) Instantiate(playersPrefabs[0], new Vector3(-14f, -0.54f, 10.0f), Quaternion.identity)).GetComponent<Player.Movement>();
@@ -154,8 +159,4 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void PlayerBuyTile()
-	{
-		players[currentPlayerIndex].BuyUpgradeTile();
-	}
 }

@@ -64,6 +64,7 @@ namespace Player
 				//GameManager.Instance.CameraFollow();
 			}
 */
+
 			if(canMove)
 			{
 				if(moveCount < numberOfMoves)
