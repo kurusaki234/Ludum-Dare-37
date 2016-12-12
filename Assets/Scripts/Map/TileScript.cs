@@ -17,6 +17,7 @@ public class TileScript : MonoBehaviour
 		Shop_Tile = 8,
 		Temple_Tile = 9,
 		Storage_Tile = 10,
+		Starting_Tile = 11,
 
 		TOTAL
 	};
@@ -28,15 +29,4 @@ public class TileScript : MonoBehaviour
 
 	public MeshRenderer meshRenderer;
 	public List<Material> tileMaterials;
-
-	void Start () 
-	{
-	
-	}
-
-
-	void Update () 
-	{
-	
-	}
 }

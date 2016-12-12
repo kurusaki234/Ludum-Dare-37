@@ -51,14 +51,10 @@ public class TileManagerScript : MonoBehaviour
 		{
 			for (int j = 0; j < mapX; j++)
 			{
-				TileScript tempTileScript = ((GameObject) Instantiate(tilePrefab, new Vector3(j - colCount/2, 0.0f, rowCount/2 - i), Quaternion.identity)).GetComponent<TileScript>();
+				TileScript tempTileScript = ((GameObject) Instantiate(tilePrefab, new Vector3(j - colCount/2, -1.0f, rowCount/2 - i), Quaternion.identity)).GetComponent<TileScript>();
 				tempTileScript.transform.parent = transform;
 
-				if (mapArray[i,j] == 0)
-				{
-					tempTileScript.type = TileScript.Type.None;
-				}
-				else if (mapArray[i,j] == 1)
+				if (mapArray[i,j] == 1)
 				{
 					tempTileScript.type = TileScript.Type.Walkable_Tile;
 					tempTileScript.meshRenderer.material = tempTileScript.tileMaterials[0];
@@ -121,30 +117,30 @@ public class TileManagerScript : MonoBehaviour
 	{
 		mapArray = new int[mapY,mapX] 
 		{
-			{2, 3, 3, 3, 3, 3, 3, 3, 3, 3,  	3, 3, 3, 3, 3, 3, 3, 3, 3, 3,		 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 		2, 2},
-			{3, 5, 5, 7, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 1, 8, 2, 2, 7, 7, 7, 		7, 2},
-			{3, 5, 5, 6, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 1, 1, 3, 2, 7, 2, 2, 		2, 2},
-			{3, 6, 7, 3, 3, 3, 3, 3, 3, 1,  	1, 3, 3, 3, 3, 2, 2, 3, 3, 3,		 3, 3, 1, 1, 4, 4, 2, 7, 2, 2, 		2, 2},
-			{3, 1, 1, 3, 3, 3, 3, 3, 3, 1,  	1, 1, 1, 1, 7, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 4, 4, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 6, 5, 5, 7, 1, 1,		 1, 1, 7, 5, 5, 2, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	3, 1, 3, 3, 3, 6, 7, 3, 3, 3,		 1, 1, 6, 5, 5, 2, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 1, 1, 9, 9, 2,  	3, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 3, 3, 6, 7, 3, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 6, 7, 9, 9, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 10, 10, 1, 1, 3, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 1, 7, 5, 5, 6, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 10, 10, 7, 6, 3, 2, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 1, 6, 5, 5, 7, 1, 1,  	1, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 2, 5, 5, 7, 7, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1,  	1, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 2, 5, 5, 7, 7, 7, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 2, 3, 3, 1, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 7, 5, 5, 6, 7, 3, 2, 2, 2, 2, 		0, 0},
-			{3, 1, 1, 3, 3, 3, 3, 1, 1, 3,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 6, 5, 5, 1, 1, 3, 2, 2, 2, 2, 		0, 0},
-			{3, 1, 1, 1, 1, 1, 7, 5, 5, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{4, 4, 1, 1, 1, 1, 6, 5, 5, 2,  	3, 1, 2, 2, 2, 2, 2, 2, 2, 2,		 1, 9, 9, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{4, 4, 7, 6, 3, 3, 3, 6, 7, 3,  	3, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 9, 9, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{3, 1, 5, 5, 2, 3, 3, 1, 1, 1,  	1, 1, 3, 3, 3, 3, 3, 3, 3, 3,		 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{3, 1, 5, 5, 2, 3, 3, 1, 1, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 3, 3, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{3, 1, 6, 7, 3, 3, 3, 3, 3, 1,  	1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 0, 0, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{3, 1, 1, 3, 3, 3, 3, 3, 3, 1,  	1, 3, 3, 3, 3, 6, 7, 3, 3, 3,		 0, 0, 3, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{3, 1, 1, 1, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 6, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{2, 8, 1, 1, 1, 1, 1, 1, 1, 1,  	1, 1, 1, 1, 7, 5, 5, 7, 1, 1,		 1, 1, 1, 1, 1, 3, 0, 0, 0, 0, 		0, 0},
-			{2, 2, 3, 3, 3, 3, 3, 3, 3, 3,  	3, 3, 3, 3, 3, 2, 2, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 		0, 0},
+			{2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 10, 10, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,		3, 3},
+			{2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 	1, 1, 1, 1, 6, 5, 5, 7, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		1, 3},
+			{2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 	1, 1, 1, 1, 7, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 1, 1, 8, 1, 1, 1,		1, 3},
+			{3, 1, 1, 9, 9, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 7, 6, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 2, 4, 4, 1,		1, 3},
+			{3, 1, 1, 9, 9, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 3, 4, 4, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 1, 6, 7, 1, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 1, 6, 7, 1, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 1, 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 7, 6, 3, 3, 1, 1, 3, 3, 1, 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,		 2, 2, 1, 3, 3, 1, 1, 3, 3, 7,		6, 3},
+			{3, 5, 5, 7, 1, 5, 5, 1, 1, 1, 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,		 2, 2, 1, 1, 1, 5, 5, 1, 6, 5,		5, 3},
+			{3, 5, 5, 6, 1, 5, 5, 1, 1, 1, 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,		 2, 2, 1, 1, 1, 5, 5, 1, 7, 5,		5, 3},
+			{3, 7, 6, 3, 3, 1, 1, 3, 3, 1, 		2, 2, 2, 2, 2, 2, 2, 2, 2, 2,		 2, 2, 1, 3, 3, 1, 1, 3, 3, 6,		7, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 1, 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		 1, 1, 1, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 1, 7, 6, 1, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 3, 3, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 1, 6, 6, 1, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 3, 3, 1,		1, 3},
+			{3, 1, 1, 4, 4, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 1, 1, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 3, 9, 9, 1,		1, 3},
+			{3, 1, 1, 4, 4, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 7, 6, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 2, 9, 9, 1,		1, 3},
+			{3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 6, 5, 5, 7, 1, 1,		 1, 1, 1, 1, 1, 1, 8, 1, 1, 1,		1, 3},
+			{2, 8, 1, 1, 1, 1, 1, 1, 1, 1, 		1, 1, 1, 1, 7, 5, 5, 6, 1, 1,		 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,		1, 3},
+			{2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 		3, 3, 3, 3, 3, 10, 10, 3, 3, 3,		 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,		3, 3},
 		};
 
 		rowCount = mapArray.GetLength(0);
@@ -153,21 +149,28 @@ public class TileManagerScript : MonoBehaviour
 
 	public bool CheckWalkableTile(int row, int col)
 	{
-		if(row < 0 || row > rowCount)
-		{
-			return false;
-		}
-
-		if(col < 0 || col > colCount)
+		if(row < 0 || row > rowCount ||
+			col < 0 || col > colCount)
 		{
 			return false;
 		}
 
 		for(int i = 0; i < tileList.Count; i++)
 		{
-			if(tileList[i].type == TileScript.Type.Walkable_Tile && tileList[i].rowIndex == row && tileList[i].colIndex == col)
+			if(tileList[i].rowIndex == row && tileList[i].colIndex == col)
 			{
-				return true;
+				if(tileList[i].type == TileScript.Type.Walkable_Tile ||
+					tileList[i].type == TileScript.Type.Event_Tile ||
+					tileList[i].type == TileScript.Type.Fortune_Tile ||
+					tileList[i].type == TileScript.Type.Unfortune_Tile ||
+					tileList[i].type == TileScript.Type.Prison_Tile)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		}
 
@@ -198,7 +201,11 @@ public class TileManagerScript : MonoBehaviour
 
 		for(int i = 0; i < tileList.Count; i++)
 		{
-			if(tileList[i].type == TileScript.Type.Walkable_Tile)
+			if(tileList[i].type == TileScript.Type.Walkable_Tile ||
+				tileList[i].type == TileScript.Type.Event_Tile ||
+				tileList[i].type == TileScript.Type.Fortune_Tile ||
+				tileList[i].type == TileScript.Type.Unfortune_Tile ||
+				tileList[i].type == TileScript.Type.Prison_Tile)
 			{
 				AStarPathScript.gridMap[tileList[i].rowIndex][tileList[i].colIndex] = true;
 			}
@@ -263,7 +270,7 @@ public class TileManagerScript : MonoBehaviour
 		{
 			for(int i=0; i<AStarPathScript.pathNodes.Count; i++)
 			{
-				Vector3 nodePos = new Vector3(AStarPathScript.pathNodes[i].nodeIndex.j - colCount/2, 0.5f, rowCount/2 - AStarPathScript.pathNodes[i].nodeIndex.i);
+				Vector3 nodePos = new Vector3(AStarPathScript.pathNodes[i].nodeIndex.j - colCount/2, 0.0f, rowCount/2 - AStarPathScript.pathNodes[i].nodeIndex.i);
 
 				moveGridList.Add(nodePos);
 			}
