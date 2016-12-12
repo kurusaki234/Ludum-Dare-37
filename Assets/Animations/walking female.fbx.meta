@@ -150,7 +150,7 @@ ModelImporter:
     4300000: Beta_HighLimbsGeo
     4300002: Beta_HighTorsoGeo
     4300004: Beta_HighJointsGeo
-    7400000: Sadako Walk
+    7400000: Female Walk
     9500000: //RootNode
     13700000: Beta_HighJointsGeo
     13700002: Beta_HighLimbsGeo
@@ -180,7 +180,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Sadako Walk
+      name: Female Walk
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 41
@@ -195,7 +195,7 @@ ModelImporter:
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 1
       heightFromFeet: 0
