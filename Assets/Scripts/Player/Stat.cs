@@ -11,6 +11,7 @@ namespace Player
 		public int currency {get; set;}
 		public int posX {get; set;}
 		public int posY {get; set;}
+		public int sequence; 
 
 		public enum Controller
 		{
@@ -21,14 +22,19 @@ namespace Player
 
 		public enum Type
 		{
-			NINJA = 0,
+			KAYAKO = 0,
 			SADAKO = 1,
-			SHRINEMAIDEN = 2,
-			WHITE_COLLAR = 3,
+			DEMON_FOX = 2,
+			JAMI = 3,
 			TOTAL
 		}
 
 		public Controller controller;
 		public Type type;
+
+		void Start()
+		{
+			
+		}
 	}
 }
