@@ -36,6 +36,6 @@ public class GameDatabaseScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		
 	}
 }
