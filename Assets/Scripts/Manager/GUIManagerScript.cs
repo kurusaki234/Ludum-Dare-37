@@ -32,7 +32,7 @@ public class GUIManagerScript : MonoBehaviour
 
 	bool isPaused = false;
 
-	public GameObject gameCanvas, pauseCanvas, inventoryCanvas, inventoryScrollPanel, shopScrollPanel;
+	public GameObject gameCanvas, pauseCanvas, inventoryCanvas, inventoryScrollPanel, shopScrollPanel, buyButton, noBuyButton;
 
 	void Awake()
 	{

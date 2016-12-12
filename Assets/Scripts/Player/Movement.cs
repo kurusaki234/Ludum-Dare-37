@@ -89,34 +89,50 @@ namespace Player
 						, Vector3.down, out hitInfo, ground))
 					{
 						targetTile = hitInfo.transform.gameObject;
-						transform.position = new Vector3(targetTile.transform.position.x, 0.0f, targetTile.transform.position.z);
+						transform.position = new Vector3(targetTile.transform.position.x, -0.54f, targetTile.transform.position.z);
 						targetTile = null;
-					}
-
-					if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
-						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
-						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true ||
-						TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
-					{
-						Debug.Log("ASDASD");
-						BuyUpgradeTile();
-					}
-					else
-					{
-						//GameManager.Instance.NextTurn();
 					}
 
 					moveCount = 0;
 					canMove = false;
+
+					Checking();
 				}
 			}
+		}
 
-			if(Input.GetKeyDown(KeyCode.A))
+		void Checking()
+		{
+			if(!bot)
 			{
-				Move();
+				if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
+				{
+					GameManager.Instance.uiCanvas.SetActive(true);
+					GUIManagerScript.Instance.buyButton.SetActive(true);
+					GUIManagerScript.Instance.noBuyButton.SetActive(true);
+				}
+				else
+				{
+					GameManager.Instance.NextTurn();
+				}
 			}
-
-			Debug.Log(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)));
+			else
+			{
+				if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true ||
+					TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
+				{
+					BuyUpgradeTile();
+				}
+				else
+				{
+					GameManager.Instance.NextTurn();
+				}
+			}
 		}
 
 		public void Move()
@@ -135,20 +151,220 @@ namespace Player
 			if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, transform.position.z)) == true)
 			{
 				TileScript tempTile = TileManagerScript.Instance.getTile(new Vector3(transform.position.x - 1, transform.position.y - 0.46f, (int)transform.position.z)).gameObject.GetComponent<TileScript>();
-				tempTile.SadokoBuilding(90.0f);
+
+				if(tempTile.owner == TileScript.Owner.None)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Sadako;		
+					}
+					else if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Kayako;
+					}
+					else if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Jami;
+					}
+					else if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.DemonFox;
+					}
+				}
+
+				if(tempTile.owner == TileScript.Owner.Sadako)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.SadokoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Kayako)
+				{
+					if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.KayakoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Jami)
+				{
+					if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.JamiBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.DemonFox)
+				{
+					if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.DemonFoxBuilding(-90.0f);						
+					}
+				}
 			}
-			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z)) == true)
+			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, transform.position.z + 1)) == true)
 			{
-				
+				TileScript tempTile = TileManagerScript.Instance.getTile(new Vector3(transform.position.x + 1, transform.position.y - 0.46f, (int)transform.position.z + 1)).gameObject.GetComponent<TileScript>();
+
+				if(tempTile.owner == TileScript.Owner.None)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Sadako;		
+					}
+					else if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Kayako;
+					}
+					else if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Jami;
+					}
+					else if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.DemonFox;
+					}
+				}
+
+				if(tempTile.owner == TileScript.Owner.Sadako)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.SadokoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Kayako)
+				{
+					if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.KayakoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Jami)
+				{
+					if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.JamiBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.DemonFox)
+				{
+					if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.DemonFoxBuilding(-90.0f);						
+					}
+				}
 			}
 			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z - 1)) == true)
 			{
-				
+				TileScript tempTile = TileManagerScript.Instance.getTile(new Vector3(transform.position.x, transform.position.y - 0.46f, (int)transform.position.z - 1)).gameObject.GetComponent<TileScript>();
+
+				if(tempTile.owner == TileScript.Owner.None)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Sadako;		
+					}
+					else if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Kayako;
+					}
+					else if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Jami;
+					}
+					else if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.DemonFox;
+					}
+				}
+
+				if(tempTile.owner == TileScript.Owner.Sadako)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.SadokoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Kayako)
+				{
+					if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.KayakoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Jami)
+				{
+					if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.JamiBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.DemonFox)
+				{
+					if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.DemonFoxBuilding(-90.0f);						
+					}
+				}
 			}
 			else if(TileManagerScript.Instance.CheckInteractableTile(new Vector3(transform.position.x , transform.position.y - 0.46f, transform.position.z + 1)) == true)
 			{
-				
+				TileScript tempTile = TileManagerScript.Instance.getTile(new Vector3(transform.position.x, transform.position.y - 0.46f, (int)transform.position.z + 1)).gameObject.GetComponent<TileScript>();
+
+				if(tempTile.owner == TileScript.Owner.None)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Sadako;		
+					}
+					else if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Kayako;
+					}
+					else if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.Jami;
+					}
+					else if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.owner = TileScript.Owner.DemonFox;
+					}
+				}
+
+				if(tempTile.owner == TileScript.Owner.Sadako)
+				{
+					if(gameObject.name == "Sadako Model(Clone)")
+					{
+						tempTile.SadokoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Kayako)
+				{
+					if(gameObject.name == "Kayako Model(Clone)")
+					{
+						tempTile.KayakoBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.Jami)
+				{
+					if(gameObject.name == "Jami Model(Clone)")
+					{
+						tempTile.JamiBuilding(-90.0f);						
+					}
+				}
+				else if(tempTile.owner == TileScript.Owner.DemonFox)
+				{
+					if(gameObject.name == "Demon Fox Model(Clone)")
+					{
+						tempTile.DemonFoxBuilding(-90.0f);						
+					}
+				}
 			}
+
+			GameManager.Instance.uiCanvas.SetActive(false);
+			GUIManagerScript.Instance.buyButton.SetActive(false);
+			GUIManagerScript.Instance.noBuyButton.SetActive(false);
+			GameManager.Instance.NextTurn();
 		}
 
 		/*public void Move()

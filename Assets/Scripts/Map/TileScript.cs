@@ -21,7 +21,19 @@ public class TileScript : MonoBehaviour
 		TOTAL
 	};
 
+	public enum Owner
+	{
+		None = 0,
+		Sadako = 1,
+		Kayako = 2,
+		Jami = 3,
+		DemonFox = 4,
+
+		TOTAL
+	}
+
 	public Type type = Type.None;
+	public Owner owner = Owner.None;
 
 	public int rowIndex;
 	public int colIndex;
@@ -37,36 +49,85 @@ public class TileScript : MonoBehaviour
 
 	public void SadokoBuilding(float angleRotate)
 	{
-		Debug.Log("AAA");
-		if(currentLevel == 0)
+		if(currentLevel < 4)
 		{
-			 currentBulding = (GameObject)Instantiate(sadakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
-			currentLevel ++;
-		}
-		else if(currentLevel == 1)
-		{
-			Destroy(currentBulding);
+			if(currentLevel == 0)
+			{
+				currentBulding = (GameObject)Instantiate(sadakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 1)
+			{
+				Destroy(currentBulding);
 
-			currentBulding = (GameObject)Instantiate(sadakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
-			currentLevel ++;
-		}
-		else if(currentLevel == 2)
-		{
-			Destroy(currentBulding);
+				currentBulding = (GameObject)Instantiate(sadakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 2)
+			{
+				Destroy(currentBulding);
 
-			currentBulding = (GameObject)Instantiate(sadakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
-			currentLevel ++;
-		}
-		else if(currentLevel == 3)
-		{
-			Destroy(currentBulding);
+				currentBulding = (GameObject)Instantiate(sadakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 3)
+			{
+				Destroy(currentBulding);
 
-			currentBulding = (GameObject)Instantiate(sadakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-				Quaternion.AngleAxis(angleRotate, new Vector3(0.0f, 1.0f, 0.0f)), transform);
-			currentLevel ++;
+				currentBulding = (GameObject)Instantiate(sadakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
 		}
+	}
+
+	public void KayakoBuilding(float angleRotate)
+	{
+		if(currentLevel < 4)
+		{
+			if(currentLevel == 0)
+			{
+				currentBulding = (GameObject)Instantiate(kayakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 1)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(kayakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 2)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(kayakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 1.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+			else if(currentLevel == 3)
+			{
+				Destroy(currentBulding);
+
+				currentBulding = (GameObject)Instantiate(kayakoBuildings[3], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
+					Quaternion.AngleAxis(angleRotate, new Vector3(1.0f, 0.0f, 0.0f)), transform);
+				currentLevel ++;
+			}
+		}
+	}
+
+	public void JamiBuilding(float angleRotate)
+	{
+		
+	}
+
+	public void DemonFoxBuilding(float angleRotate)
+	{
+
 	}
 }

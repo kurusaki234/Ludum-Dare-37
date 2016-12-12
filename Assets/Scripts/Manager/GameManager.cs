@@ -56,16 +56,14 @@ public class GameManager : MonoBehaviour
 
 	public void NextTurn()
 	{
-		/*if(currentPlayerIndex + 1 < players.Count)
+		if(currentPlayerIndex + 1 < players.Count)
 		{
-			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex ++;
 		}
 		else
 		{
-			players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 0;
 			currentPlayerIndex = 0;
-		}*/
+		}
 
 		if(players[currentPlayerIndex].bot == false)
 		{
@@ -73,11 +71,11 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+			uiCanvas.SetActive(false);
 			players[currentPlayerIndex].Move();
 		}
 
 		GameManager.Instance.CameraFollow();
-		//players[currentPlayerIndex].gameObject.GetComponent<MeshRenderer>().sortingOrder = 1;
 	}
 
 	public void PlayerMove()
@@ -155,5 +153,10 @@ public class GameManager : MonoBehaviour
 			tempPlayer4.gameObject.transform.localEulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
 			break;
 		}
+	}
+
+	public void PlayerBuyTile()
+	{
+		players[currentPlayerIndex].BuyUpgradeTile();
 	}
 }
