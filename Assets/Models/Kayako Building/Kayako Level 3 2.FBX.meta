@@ -1,18 +1,14 @@
 fileFormatVersion: 2
-guid: 34baff00322835b45b5f75251100407e
-timeCreated: 1481568462
+guid: 6f96ea1f6ac54fb4188a267980622e41
+timeCreated: 1481570526
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Box002
-    100002: //RootNode
-    100004: Plane002
-    400000: Box002
-    400002: //RootNode
-    400004: Plane002
-    2300000: Box002
-    3300000: Box002
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: Box002
     7400000: Take 001
     9500000: //RootNode
