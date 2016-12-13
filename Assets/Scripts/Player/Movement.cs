@@ -28,11 +28,13 @@ namespace Player
 		Quaternion tempRotation;
 
 		public LayerMask ground;
+		Animator anim;
 
 		void Start()
 		{
 			moveCount = 0;
 			targetTile = null;
+			anim = GetComponent<Animator>();
 		}
 			
 		void Update()
@@ -67,6 +69,8 @@ namespace Player
 
 			if(canMove)
 			{
+				anim.Play("Male Walk");
+
 				if(moveCount < numberOfMoves)
 				{
 					Vector3 oldPos = transform.position;
@@ -99,7 +103,11 @@ namespace Player
 					canMove = false;
 					Checking();
 				}
-			}			
+			}
+			else
+			{
+				anim.Play("Idle");
+			}
 		}
 
 		void Checking()
