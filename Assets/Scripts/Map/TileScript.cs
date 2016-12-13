@@ -56,7 +56,7 @@ public class TileScript : MonoBehaviour
 			if(currentLevel == 0)
 			{
 				currentBulding = (GameObject)Instantiate(sadakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)) , transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 1)
@@ -64,7 +64,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(sadakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 2)
@@ -72,7 +72,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(sadakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 		}
@@ -85,7 +85,7 @@ public class TileScript : MonoBehaviour
 			if(currentLevel == 0)
 			{
 				currentBulding = (GameObject)Instantiate(kayakoBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 1)
@@ -93,7 +93,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(kayakoBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 2)
@@ -101,7 +101,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(kayakoBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 		}
@@ -114,7 +114,7 @@ public class TileScript : MonoBehaviour
 			if(currentLevel == 0)
 			{
 				currentBulding = (GameObject)Instantiate(jamiBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 1)
@@ -122,7 +122,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(jamiBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 2)
@@ -130,7 +130,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(jamiBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 		}
@@ -143,7 +143,7 @@ public class TileScript : MonoBehaviour
 			if(currentLevel == 0)
 			{
 				currentBulding = (GameObject)Instantiate(demonFoxBuildings[0], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 1)
@@ -151,7 +151,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(demonFoxBuildings[1], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 			else if(currentLevel == 2)
@@ -159,7 +159,7 @@ public class TileScript : MonoBehaviour
 				Destroy(currentBulding);
 
 				currentBulding = (GameObject)Instantiate(demonFoxBuildings[2], new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z), 
-					Quaternion.identity, transform);
+					Quaternion.AngleAxis (-90.0f, new Vector3 (1.0f, 0.0f, 0.0f)), transform);
 				currentLevel ++;
 			}
 		}
